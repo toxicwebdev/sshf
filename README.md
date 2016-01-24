@@ -1,4 +1,4 @@
-# SSHF
+# SSHF (SSH Find)
 
 `sshf` is a really simple shell script that will search your `~/.ssh/config` by available keywords (usually vhosts) and display the according ssh server to connect to.
 
