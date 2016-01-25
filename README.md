@@ -49,6 +49,14 @@ Host c1
 
 So in words: above every `Host` there must be a comment starting with `# @vhosts: ....`.
 
+## Examples
+
+### Get VirtualHosts
+
+To get a list of all VirtualHosts apache is serving, use the following command:
+```shell
+httpd -S 2>&1 | grep namevhost | awk '{print $4}' | sort -u
+```
 
 ## More info
 
