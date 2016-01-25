@@ -48,3 +48,8 @@ Host c1
 ```
 
 So in words: above every `Host` there must be a comment starting with `# @vhosts: ....`.
+
+
+## More info
+
+Read up more about it in this article at the bottom [SSH tunnelling for fun and profit: SSH Config](http://www.everythingcli.org/ssh-tunnelling-for-fun-and-profit-ssh-config/)
