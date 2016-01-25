@@ -1,18 +1,18 @@
 #!/bin/sh
 
+if [ -z "${1}" ]; then
+	echo "enter a search string"
+	exit 1
+fi
+
 TAIL="$(which tail)"
 GREP="$(which grep)"
 CAT="$(which cat)"
 SED="$(which sed)"
 ACK="$(which ack)"
 
-#$CAT ~/.ssh/config | $GREP -B 1 "^Host" | $TAIL -rn100000 | $GREP -B 1 --color=always -i "${1}" | \
-#    $SED -e $'s/Host/------------------------------------------------------------\\\n/g' | \
-#    $SED -e $'s/#/------------------------------------------------------------\\\n/g'
-
-#$CAT ~/.ssh/config | $SED -n "/^# @vhosts.*${1}/,/^Host/p" | $TAIL -rn100000 | $GREP --color=always -i -A 500 -B 500 "${1}" 
 $CAT ~/.ssh/config | $SED -n "/^# @vhosts.*${1}/,/^Host/p" | $TAIL -rn100000 \
-    | $SED -e $'s/Host/\\\n------------------------------------------------------------\\\n-/g' \
-    | $SED -e $'s/#/------------------------------------------------------------\\\n/g' \
+	| $SED '/^Host\s/i\\n============================================================' \
+	| $SED '/^Host\s/a============================================================' \
 	| $ACK --passthru "${1}"
 
