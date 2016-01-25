@@ -53,9 +53,15 @@ So in words: above every `Host` there must be a comment starting with `# @vhosts
 
 ### Get VirtualHosts
 
+#### Apache
 To get a list of all VirtualHosts apache is serving, use the following command:
 ```shell
 httpd -S 2>&1 | grep namevhost | awk '{print $4}' | sort -u
+```
+
+#### Nginx
+```shell
+find /etc/nginx/ -type f -name "*.conf" -print0 | xargs -0 egrep '^(\s|\t)*server_name' | awk '{print $3}' | sort -u
 ```
 
 ## More info
